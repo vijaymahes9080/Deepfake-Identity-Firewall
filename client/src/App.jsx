@@ -38,7 +38,7 @@ export default function App() {
   });
 
   // Handle Red-Team Simulated Attack Injection
-  const handleSimulateAttack = async (attackVectors, intensity) => {
+  const handleSimulateAttack = async (attackVectors, intensity = 1.0) => {
     try {
       const res = await fetch('/api/v1/redteam/simulate', {
         method: 'POST',
@@ -50,10 +50,89 @@ export default function App() {
         setEvaluation(data.evaluation);
         setAttackGraph(data.attackGraph);
         sendManualTelemetry(data.simulation.telemetryDelta);
+        return;
       }
     } catch (err) {
-      console.warn('Simulated attack dispatch error:', err);
+      console.warn('Backend offline, using client-side simulated attack evaluation:', err);
     }
+
+    // Client-side fallback calculation for GitHub Pages static hosting
+    const hasFace = attackVectors.includes('face_swap');
+    const hasVoice = attackVectors.includes('voice_clone');
+    const hasVirtual = attackVectors.includes('virtual_cam');
+    const hasReplay = attackVectors.includes('screen_replay');
+    const hasSync = attackVectors.includes('lip_desync');
+    const hasSwitch = attackVectors.includes('identity_switch');
+    const hasMacro = attackVectors.includes('behavior_macro');
+
+    let baseRisk = 5;
+    if (hasFace) baseRisk += 30 * intensity;
+    if (hasVoice) baseRisk += 25 * intensity;
+    if (hasVirtual) baseRisk += 18 * intensity;
+    if (hasReplay) baseRisk += 20 * intensity;
+    if (hasSync) baseRisk += 15 * intensity;
+    if (hasSwitch) baseRisk += 25 * intensity;
+    if (hasMacro) baseRisk += 12 * intensity;
+
+    const finalRisk = Math.min(100, Math.round(baseRisk));
+    const confidence = Math.max(0, 100 - finalRisk);
+
+    let status = 'TRUSTED';
+    let statusColor = '#00f5a0';
+    let actionRequired = 'PASS';
+
+    if (finalRisk > 80) {
+      status = 'CRITICAL';
+      statusColor = '#ff0055';
+      actionRequired = 'TERMINATE_SESSION';
+    } else if (finalRisk > 60) {
+      status = 'HIGH RISK';
+      statusColor = '#ff5400';
+      actionRequired = 'BLOCK_OR_REAUTH';
+    } else if (finalRisk > 35) {
+      status = 'SUSPICIOUS';
+      statusColor = '#ffb703';
+      actionRequired = 'STEP_UP_CHALLENGE';
+    } else if (finalRisk > 20) {
+      status = 'LOW RISK';
+      statusColor = '#00d4ff';
+      actionRequired = 'PASS_MONITORED';
+    }
+
+    const threats = [];
+    if (hasFace) threats.push({ module: 'FaceShield', threat: 'Neural Inpainting / Boundary Blur Detected' });
+    if (hasVoice) threats.push({ module: 'VoiceShield', threat: 'Vocoder Harmonic Phase Anomaly Detected' });
+    if (hasVirtual) threats.push({ module: 'DeviceTrust', threat: 'Virtual Camera Driver Hook Detected' });
+    if (hasReplay) threats.push({ module: 'ReplayGuard', threat: 'Screen Moire Raster Pattern Detected' });
+    if (hasSync) threats.push({ module: 'SyncGuard', threat: 'Phoneme-Viseme Audio-Visual Lag Desync' });
+    if (hasSwitch) threats.push({ module: 'IdentityContinuity', threat: 'Biometric Cosine Vector Shift Detected' });
+    if (hasMacro) threats.push({ module: 'BehaviourID', threat: 'Zero-Entropy Synthetic Interaction Bot' });
+
+    setEvaluation({
+      riskScore: finalRisk,
+      confidenceScore: confidence,
+      status,
+      statusColor,
+      alertLevel: finalRisk > 60 ? 'CRITICAL' : finalRisk > 35 ? 'ELEVATED' : 'NORMAL',
+      actionRequired,
+      threatFactors: threats,
+      breakdown: {
+        face: { score: hasFace ? Math.round(92 * intensity) : 4, label: 'Face Authenticity', weight: '22%' },
+        liveness: { score: (hasFace || hasReplay) ? Math.round(85 * intensity) : 6, label: 'Biological Liveness', weight: '18%' },
+        voice: { score: hasVoice ? Math.round(90 * intensity) : 5, label: 'Voice Naturalness', weight: '18%' },
+        sync: { score: hasSync ? Math.round(88 * intensity) : 8, label: 'Lip-Audio Synchronization', weight: '14%' },
+        replay: { score: hasReplay ? Math.round(89 * intensity) : 3, label: 'Replay & Screen Guard', weight: '12%' },
+        device: { score: hasVirtual ? Math.round(95 * intensity) : 2, label: 'Device & Driver Trust', weight: '8%' },
+        behavior: { score: hasMacro ? Math.round(85 * intensity) : 5, label: 'Behavioral Biometrics', weight: '5%' },
+        continuity: { score: hasSwitch ? Math.round(92 * intensity) : 3, label: 'Identity Continuity', weight: '3%' }
+      }
+    });
+
+    setAttackGraph(prev => ({
+      ...prev,
+      attackPathDetected: attackVectors.length > 0,
+      entryPoint: hasVirtual ? 'Virtual Driver Hook' : hasReplay ? 'Screen Capture Stream' : hasFace ? 'Real-Time Inpainter' : 'Direct Sensor'
+    }));
   };
 
   const isCritical = evaluation?.riskScore > 60;
