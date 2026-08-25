@@ -1,7 +1,7 @@
 # 🛡️ Deepfake Identity Firewall — Next-Generation AI Security Layer
 
 <p align="center">
-  <img src="https://images.openai.com/static-rsc-4/53rbZXsfh0qbG5123p9BrpTolHBL2aMA6mRfo0WCs3_GWL2QY3VgomT9QJLyyPqu1UBZieOCkJ2B1B1il4MipWQ0o9KDc54HEemJHYe6nrh6tdO_6bm_Q1m3fcjscC7IzItDpGPFPdWQFnvkHPRLg6OSyP3q4ffyzzKpkfvM5EXBYmRyozu8VJxWUKcj3FTB?purpose=fullsize" width="800" alt="Deepfake Identity Firewall Hero" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,245,160,0.2);" />
+  <img src="./images/image-1.jpg" width="800" alt="Deepfake Identity Firewall Hero" style="border-radius: 12px; box-shadow: 0 8px 32px rgba(0,245,160,0.2);" />
 </p>
 
 <p align="center">
@@ -17,6 +17,22 @@
 > ### *"Don't just verify the face. Verify the human behind the digital interaction."*
 
 The **Deepfake Identity Firewall** is a continuous, multimodal identity security platform that evaluates whether a real person is genuinely present behind a digital session across video, voice, liveness, device, and behavioral vectors.
+
+---
+
+## 🎨 Concept & Visual Architecture Gallery
+
+<p align="center">
+  <img src="./images/image-2.jpg" width="48%" alt="Multi-Layer Verification" style="border-radius: 8px; margin: 1%;" />
+  <img src="./images/image-3.jpg" width="48%" alt="Attack Chain Detection" style="border-radius: 8px; margin: 1%;" />
+</p>
+<p align="center">
+  <img src="./images/image-4.jpg" width="48%" alt="Micro-Expression & Sync Engine" style="border-radius: 8px; margin: 1%;" />
+  <img src="./images/image-5.jpg" width="48%" alt="Identity Attack Graph" style="border-radius: 8px; margin: 1%;" />
+</p>
+<p align="center">
+  <img src="./images/image-6.jpg" width="98%" alt="Multimodal Identity Firewall Architecture" style="border-radius: 8px; margin: 1%;" />
+</p>
 
 ---
 
