@@ -20,19 +20,36 @@ The **Deepfake Identity Firewall** is a continuous, multimodal identity security
 
 ---
 
-## 🎨 Concept & Visual Architecture Gallery
+## 🎨 Creative Multi-Image Architecture & Visual Showcase
 
-<p align="center">
-  <img src="./images/image-2.jpg" width="48%" alt="Multi-Layer Verification" style="border-radius: 8px; margin: 1%;" />
-  <img src="./images/image-3.jpg" width="48%" alt="Attack Chain Detection" style="border-radius: 8px; margin: 1%;" />
-</p>
-<p align="center">
-  <img src="./images/image-4.jpg" width="48%" alt="Micro-Expression & Sync Engine" style="border-radius: 8px; margin: 1%;" />
-  <img src="./images/image-5.jpg" width="48%" alt="Identity Attack Graph" style="border-radius: 8px; margin: 1%;" />
-</p>
-<p align="center">
-  <img src="./images/image-6.jpg" width="98%" alt="Multimodal Identity Firewall Architecture" style="border-radius: 8px; margin: 1%;" />
-</p>
+<table>
+  <tr>
+    <td width="50%" align="center" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:12px;">
+      <a href="./images/image-2.jpg"><img src="./images/image-2.jpg" width="100%" alt="Multi-Layer Identity Verification" style="border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.08);" /></a>
+      <p align="center" style="color:#0f172a; margin-top:8px;"><b>1. Multi-Layer Identity Verification</b><br/><i>Continuous multi-sensory validation across Face, Voice, rPPG, and Device telemetry.</i></p>
+    </td>
+    <td width="50%" align="center" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:12px;">
+      <a href="./images/image-3.jpg"><img src="./images/image-3.jpg" width="100%" alt="Deepfake Attack Chain Detection" style="border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.08);" /></a>
+      <p align="center" style="color:#0f172a; margin-top:8px;"><b>2. Deepfake Attack Chain Detection</b><br/><i>Reconstructing entry points: Camera → Virtual Driver → Face Swap → Voice Clone.</i></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:12px;">
+      <a href="./images/image-4.jpg"><img src="./images/image-4.jpg" width="100%" alt="Micro-Expression & Lip-Sync Correlation" style="border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.08);" /></a>
+      <p align="center" style="color:#0f172a; margin-top:8px;"><b>3. Micro-Expression & Lip-Sync Correlation</b><br/><i>Cross-examining mouth visemes against acoustic formant phoneme timing.</i></p>
+    </td>
+    <td width="50%" align="center" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:12px;">
+      <a href="./images/image-5.jpg"><img src="./images/image-5.jpg" width="100%" alt="Topological Identity Attack Graph" style="border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.08);" /></a>
+      <p align="center" style="color:#0f172a; margin-top:8px;"><b>4. Topological Identity Attack Graph</b><br/><i>Real-time visual node-link tracking of exploit pathways and active firewall blocks.</i></p>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center" style="background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; padding:16px;">
+      <a href="./images/image-6.jpg"><img src="./images/image-6.jpg" width="100%" alt="Complete Multimodal Security Layer" style="border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.08);" /></a>
+      <p align="center" style="color:#0f172a; margin-top:10px;"><b>5. Complete Multimodal Security & Zero-Knowledge Architecture</b><br/><i>End-to-end continuous biometric firewall with zero-raw-media storage policy.</i></p>
+    </td>
+  </tr>
+</table>
 
 ---
 

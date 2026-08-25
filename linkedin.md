@@ -1,8 +1,13 @@
-# 🚀 LinkedIn Post — Deepfake Identity Firewall
+# 🚀 LinkedIn Launch Post — Deepfake Identity Firewall
 
-*Copy and paste the text below directly into your LinkedIn post:*
+<p align="center">
+  <img src="./image.png" width="750" alt="Deepfake Identity Firewall LinkedIn Asset" style="border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.12);" />
+</p>
+
+> 💡 **Attachment Tip**: Attach [`image.png`](./image.png) or any image from [`images/`](./images/) to your LinkedIn post for maximum engagement!
 
 ---
+
 
 🚨 **"Are we truly talking to a human, or a generative AI deepfake?"**
 
