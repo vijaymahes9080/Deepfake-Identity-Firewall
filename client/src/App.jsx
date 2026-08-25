@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { 
   Shield, Activity, Cpu, GitBranch, Skull, GraduationCap, 
-  Landmark, Briefcase, Laptop, Terminal, Lock, Sparkles, AlertTriangle, Radio
+  Landmark, Briefcase, Laptop, Terminal, Lock, Sparkles, AlertTriangle, Radio,
+  Award, Globe, Stethoscope, Video
 } from 'lucide-react';
 import { useBiometrics } from './hooks/useBiometrics';
 import { useFirewallSocket } from './hooks/useFirewallSocket';
@@ -14,12 +15,21 @@ import { ExamMode } from './components/modes/ExamMode';
 import { BankingMode } from './components/modes/BankingMode';
 import { InterviewMode } from './components/modes/InterviewMode';
 import { RemoteWorkMode } from './components/modes/RemoteWorkMode';
+import { HealthcareTelehealthMode } from './components/modes/HealthcareTelehealthMode';
+import { GovDiplomaticMode } from './components/modes/GovDiplomaticMode';
+import { SocialLivestreamMode } from './components/modes/SocialLivestreamMode';
+import { ResearchBenchmarkView } from './components/ResearchBenchmarkView';
+import { ThreatIntelFeed } from './components/ThreatIntelFeed';
+import { BiometricVisualizer3D } from './components/BiometricVisualizer3D';
+import { AcousticSpectrogram } from './components/AcousticSpectrogram';
+import { RPPGHeartRateAnalyzer } from './components/RPPGHeartRateAnalyzer';
+import { ZeroKnowledgeProofViewer } from './components/ZeroKnowledgeProofViewer';
 import { ChallengeModal } from './components/ChallengeModal';
 import { ApiSandbox } from './components/ApiSandbox';
 import { PrivacyVaultModal } from './components/PrivacyVaultModal';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('soc'); // soc | redteam | exam | banking | interview | remotework | api
+  const [activeTab, setActiveTab] = useState('soc'); // soc | redteam | exam | banking | interview | remotework | telehealth | diplomatic | livestream | benchmark | intel | api
   const [isChallengeOpen, setIsChallengeOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 
@@ -136,7 +146,21 @@ export default function App() {
   };
 
   const isCritical = evaluation?.riskScore > 60;
-  const isSuspicious = evaluation?.riskScore > 35;
+
+  const navTabs = [
+    { id: 'soc', label: 'LIVE SOC', icon: Activity },
+    { id: 'redteam', label: 'RED-TEAM AI', icon: Skull },
+    { id: 'exam', label: 'EXAM PROCTOR', icon: GraduationCap },
+    { id: 'banking', label: 'BANKING GATE', icon: Landmark },
+    { id: 'interview', label: 'INTERVIEW', icon: Briefcase },
+    { id: 'remotework', label: 'ZERO-TRUST WORK', icon: Laptop },
+    { id: 'telehealth', label: 'TELEHEALTH', icon: Stethoscope },
+    { id: 'diplomatic', label: 'DIPLOMATIC', icon: Landmark },
+    { id: 'livestream', label: 'STREAM SHIELD', icon: Video },
+    { id: 'benchmark', label: 'BENCHMARKS', icon: Award },
+    { id: 'intel', label: 'THREAT INTEL', icon: Globe },
+    { id: 'api', label: 'DEV API', icon: Terminal }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col bg-cyber-bg text-gray-100">
@@ -174,30 +198,22 @@ export default function App() {
         </div>
 
         {/* Center: Operational Mode Switcher Tabs */}
-        <nav className="hidden lg:flex items-center space-x-1 bg-slate-950/80 p-1 rounded-lg border border-gray-800 text-xs font-mono">
-          {[
-            { id: 'soc', label: 'LIVE SOC', icon: Activity },
-            { id: 'redteam', label: 'RED-TEAM AI', icon: Skull },
-            { id: 'exam', label: 'EXAM PROCTOR', icon: GraduationCap },
-            { id: 'banking', label: 'BANKING GATE', icon: Landmark },
-            { id: 'interview', label: 'INTERVIEW', icon: Briefcase },
-            { id: 'remotework', label: 'ZERO-TRUST WORK', icon: Laptop },
-            { id: 'api', label: 'DEV API', icon: Terminal }
-          ].map(tab => {
+        <nav className="hidden xl:flex items-center space-x-1 bg-slate-950/80 p-1 rounded-lg border border-gray-800 text-xs font-mono overflow-x-auto max-w-2xl">
+          {navTabs.map(tab => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded-md transition-all ${
+                className={`flex items-center space-x-1 px-2.5 py-1.5 rounded transition-all whitespace-nowrap ${
                   isActive
                     ? 'bg-emerald-500 text-black font-bold shadow-md shadow-emerald-500/20'
                     : 'text-gray-400 hover:text-gray-200 hover:bg-slate-900'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
-                <span>{tab.label}</span>
+                <span className="text-[11px]">{tab.label}</span>
               </button>
             );
           })}
@@ -224,16 +240,8 @@ export default function App() {
       </header>
 
       {/* Mobile Tab Switcher */}
-      <div className="lg:hidden flex overflow-x-auto p-2 bg-black/80 border-b border-gray-800 space-x-1 font-mono text-xs">
-        {[
-          { id: 'soc', label: 'SOC' },
-          { id: 'redteam', label: 'Red-Team' },
-          { id: 'exam', label: 'Exam' },
-          { id: 'banking', label: 'Banking' },
-          { id: 'interview', label: 'Interview' },
-          { id: 'remotework', label: 'Remote' },
-          { id: 'api', label: 'API' }
-        ].map(tab => (
+      <div className="xl:hidden flex overflow-x-auto p-2 bg-black/80 border-b border-gray-800 space-x-1 font-mono text-xs">
+        {navTabs.map(tab => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
@@ -252,7 +260,6 @@ export default function App() {
         {activeTab === 'soc' && (
           <div className="space-y-4">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
-              {/* Left Viewport: Biometric HUD (7 Cols) */}
               <div className="lg:col-span-7">
                 <BiometricHUD
                   biometrics={biometrics}
@@ -261,11 +268,17 @@ export default function App() {
                   activeThreatCount={evaluation?.threatFactors?.length || 0}
                 />
               </div>
-
-              {/* Right Viewport: Risk Score & Dial (5 Cols) */}
               <div className="lg:col-span-5">
                 <RiskEngineScore evaluation={evaluation} />
               </div>
+            </div>
+
+            {/* Advanced Telemetry Strip: 3D Visualizer, Acoustic Spectrogram, rPPG Analyzer, ZKP */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <BiometricVisualizer3D />
+              <AcousticSpectrogram />
+              <RPPGHeartRateAnalyzer heartRate={biometrics.rppgPulse} />
+              <ZeroKnowledgeProofViewer />
             </div>
 
             {/* Dynamic Attack Graph */}
@@ -373,7 +386,32 @@ export default function App() {
           </div>
         )}
 
-        {/* Tab 7: Developer API */}
+        {/* Tab 7: Telehealth Healthcare Mode */}
+        {activeTab === 'telehealth' && (
+          <HealthcareTelehealthMode />
+        )}
+
+        {/* Tab 8: Diplomatic Gate */}
+        {activeTab === 'diplomatic' && (
+          <GovDiplomaticMode />
+        )}
+
+        {/* Tab 9: Live Streamer Shield */}
+        {activeTab === 'livestream' && (
+          <SocialLivestreamMode />
+        )}
+
+        {/* Tab 10: Research Benchmarks */}
+        {activeTab === 'benchmark' && (
+          <ResearchBenchmarkView />
+        )}
+
+        {/* Tab 11: Threat Intelligence Feed */}
+        {activeTab === 'intel' && (
+          <ThreatIntelFeed />
+        )}
+
+        {/* Tab 12: Developer API */}
         {activeTab === 'api' && (
           <ApiSandbox />
         )}
