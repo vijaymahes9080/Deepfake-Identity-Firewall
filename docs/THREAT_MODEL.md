@@ -1,1 +1,0 @@
-# STRIDE Threat Model & Attack Vector Taxonomy

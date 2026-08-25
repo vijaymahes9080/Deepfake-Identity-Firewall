@@ -1,1 +1,0 @@
-# Deepfake Identity Firewall CLI Documentation

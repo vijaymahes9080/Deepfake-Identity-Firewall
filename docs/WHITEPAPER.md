@@ -1,1 +1,0 @@
-# Technical Whitepaper: Multimodal Deepfake Identity Firewall Architecture
