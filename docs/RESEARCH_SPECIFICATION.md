@@ -1,0 +1,1 @@
+# Academic Research Specification & Anti-Spoofing Protocols
