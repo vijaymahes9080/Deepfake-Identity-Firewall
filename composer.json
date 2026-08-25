@@ -1,0 +1,12 @@
+{
+    "name": "vijaymahes9080/deepfake-identity-firewall",
+    "description": "Deepfake Identity Firewall",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Vijay Mahes",
+            "email": "Vijaypradhap2004@gmail.com"
+        }
+    ],
+    "require": {}
+}
