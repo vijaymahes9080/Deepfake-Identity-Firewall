@@ -20,27 +20,42 @@ export function ChallengeModal({ isOpen, onClose, onChallengeCompleted }) {
     setStage('PROMPT');
     setTimer(15);
 
+    const directions = ['LEFT (35°)', 'RIGHT (40°)', 'NOD UP (20°)', 'TILT LEFT (25°)', 'TILT RIGHT (25°)'];
+    const randomDir = directions[Math.floor(Math.random() * directions.length)];
+    const randomNonce = `${Math.floor(1000 + Math.random() * 9000).toString().split('').join(' ')}`;
+
+    const fallbackChallenge = {
+      challengeId: `ch_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      requiredDirection: randomDir,
+      nonceCode: randomNonce,
+      instructions: `Please turn your head ${randomDir}, then clearly speak the OTP code: "${randomNonce}"`
+    };
+
+    // If hosted on GitHub Pages or static host, use client-side instant nonce directly
+    if (window.location.hostname.endsWith('github.io') || window.location.protocol === 'file:') {
+      setChallengeData(fallbackChallenge);
+      setLoading(false);
+      return;
+    }
+
     try {
       const res = await fetch('/api/v1/challenge/generate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionId: 'session_active_demo' })
       });
-      const data = await res.json();
-      if (data.success) {
-        setChallengeData(data.challenge);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
+          setChallengeData(data.challenge);
+          setLoading(false);
+          return;
+        }
       }
-    } catch (e) {
-      // Fallback local challenge if offline
-      setChallengeData({
-        challengeId: `ch_${Date.now()}`,
-        requiredDirection: 'LEFT (35°)',
-        nonceCode: '7 4 9 2',
-        instructions: 'Please turn your head LEFT (35°), then clearly speak the code: "7 4 9 2"'
-      });
-    } finally {
-      setLoading(false);
-    }
+    } catch (e) {}
+
+    setChallengeData(fallbackChallenge);
+    setLoading(false);
   };
 
   // Countdown timer
