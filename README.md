@@ -5,9 +5,10 @@
 </p>
 
 <p align="center">
-  <a href="#-architecture"><img src="https://img.shields.io/badge/Architecture-Multimodal%20Zero--Trust-00f5a0?style=for-the-badge&logo=shield" alt="Architecture" /></a>
-  <a href="#-12-core-defense-suite"><img src="https://img.shields.io/badge/Engines-12%20Core%20Defense-00d4ff?style=for-the-badge&logo=cpu" alt="Engines" /></a>
-  <a href="#-research-benchmarks"><img src="https://img.shields.io/badge/Benchmark%20AUC-99.4%25%20Celeb--DF-ffb703?style=for-the-badge&logo=target" alt="Benchmark" /></a>
+  <a href="https://vijaymahes9080.github.io/Deepfake-Identity-Firewall/"><img src="https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-00f5a0?style=for-the-badge&logo=google-chrome&logoColor=black" alt="Live Demo" /></a>
+  <a href="#-architecture"><img src="https://img.shields.io/badge/Architecture-Multimodal%20Zero--Trust-00d4ff?style=for-the-badge&logo=shield" alt="Architecture" /></a>
+  <a href="#-12-core-defense-suite"><img src="https://img.shields.io/badge/Engines-12%20Core%20Defense-ffb703?style=for-the-badge&logo=cpu" alt="Engines" /></a>
+  <a href="#-research-benchmarks"><img src="https://img.shields.io/badge/Benchmark%20AUC-99.4%25%20Celeb--DF-00f5a0?style=for-the-badge&logo=target" alt="Benchmark" /></a>
   <a href="#-license"><img src="https://img.shields.io/badge/License-MIT-ff0055?style=for-the-badge" alt="License" /></a>
   <a href="https://github.com/vijaymahes9080/Deepfake-Identity-Firewall"><img src="https://img.shields.io/badge/GitHub-Repository-blueviolet?style=for-the-badge&logo=github" alt="GitHub" /></a>
 </p>
